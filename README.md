@@ -1,3 +1,11 @@
+```
+   ____ _____ ___  ___  ____  __  __
+  / __ `/ __ `__ \/ _ \/ __ \/ / / /
+ / /_/ / / / / / /  __/ / / / /_/ /
+ \__, /_/ /_/ /_/\___/_/ /_/\__,_/
+   /_/
+```
+
 # qmenu
 Collection of tools that utilize
 [dmenu](https://tools.suckless.org/dmenu/) to provide the user with a
