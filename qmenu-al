@@ -14,7 +14,7 @@ case $1 in
             dmenu -f -m 0)
 
         if [ -n "$chosen" ]; then
-            if ! echo "$app_list" | grep -A1 "$chosen" | grep '^Exec=.*' | cut -c 6-; then exit 2; fi
+            if ! echo "$app_list" | grep -A1 "^Name=$chosen" | grep '^Exec=.*' | cut -c 6-; then exit 2; fi
             exit 0
         fi
 
@@ -41,7 +41,7 @@ case $1 in
             if [ -n "$qmenu_conf" ]; then
                 qube_label=$(grep "^$qube_label=" "$qmenu_conf" | cut -d= -f2)
             fi
-            
+
             app_list=$(cat "$HOME"/.local/share/qubes-appmenus/"$qube"/apps/*.desktop |
                 grep '^Name=.*\|^Exec=.*' |
                 grep -vw 'Qube Settings\|qubes-vm-settings')
@@ -50,7 +50,7 @@ case $1 in
                 dmenu -p "$qube:" -f -m 0 -sb "$qube_label")
 
             if [ -n "$chosen" ]; then
-                if ! echo "$app_list" | grep -A1 "$chosen" | grep '^Exec=.*' | cut -c 6-; then exit 2; fi
+                if ! echo "$app_list" | grep -A1 "^Name=$chosen" | grep '^Exec=.*' | cut -c 6-; then exit 2; fi
                 exit 0
             fi
             exit 1
