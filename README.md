@@ -26,7 +26,7 @@ the following contents:
 ## qmenu-al
 Launch domU applications.
 
-    Usage: qmenu-al [OPTION] (--light-theme)
+    Usage: qmenu-al [OPTION]
 
      --all
      --focused
@@ -34,7 +34,7 @@ Launch domU applications.
 ## qmenu-dm
 List and manage your connected devices.
 
-    Usage: qmenu-dm [OPTION] (--light-theme)
+    Usage: qmenu-dm [OPTION]
 
      --all
      --audio-input
@@ -46,7 +46,7 @@ List, manage and configure your qubes.
 
 Selecting the top row, instead of any qube, will refresh the list.
 
-    Usage: qmenu-vm [OPTION] (--light-theme)
+    Usage: qmenu-vm [OPTION]
 
      --all
      --focused

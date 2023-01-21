@@ -23,23 +23,9 @@ rearrange_qube_list() {
    ' | sort -t- -k1,1n | cut -d- -f2-)
 }
 
-
-
-
-
-if [ "$2"  = "--light-theme" ]; then
-
-  theme_0='#ffffff'
-  theme_1='#000000'
-else
-
-  theme_0='#000000'
-  theme_1='#ffffff'
-fi
-
 # Note that the '-m 0' option in 'dmenu' is important
 # for security as it restricts it to monitor 0.
-dmenu_fmc="-f -m 0 -nb $theme_0 -nf $theme_1 -sb $theme_1 -sf $theme_0"
+dmenu_fmc="-f -m 0"
 
 case $1 in
 
@@ -62,7 +48,7 @@ case $1 in
 
   *)
 
-    printf "qmenu-dm [OPTION] (--light-theme)\nList and manage your connected devices.\n\n --all\n --audio-input\n --block\n --usb\n\n\nqmenu v1.3\n<https://github.com/sine3o14nnae/qmenu/>\n<https://gitlab.com/sine3o14nnae/qmenu/>\n\n"
+    printf "qmenu-dm [OPTION]\nList and manage your connected devices.\n\n --all\n --audio-input\n --block\n --usb\n\n\nqmenu v1.3\n<https://github.com/sine3o14nnae/qmenu/>\n<https://gitlab.com/sine3o14nnae/qmenu/>\n\n"
 
     if [ "$1" = "--help" ]; then exit 0; fi
 esac
@@ -131,7 +117,7 @@ while [ -n "$device" ]; do
 
         prompt=$(printf "No\nYes" |\
           dmenu -i -p "Attach $device_name to $target_qube?"\
-          -f -m 0 -nb $theme_0 -nf $theme_1 -sb $qube_label -sf $theme_1)
+          -f -m 0 -sb $qube_label)
 
         if [ "$prompt" = "Yes" ]; then
 
@@ -149,7 +135,7 @@ while [ -n "$device" ]; do
 
       prompt=$(printf "No\nYes" |\
         dmenu -i -p "Detach $device_name from $target_qube?"\
-        -f -m 0 -nb $theme_0 -nf $theme_1 -sb $qube_label -sf $theme_1)
+        -f -m 0 -sb $qube_label)
 
       if [ "$prompt" = "Yes" ]; then
 

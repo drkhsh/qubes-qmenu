@@ -2,16 +2,8 @@
 # Author: SINE3o14NNAE <https://github.com/sine3o14nnae/qmenu/>
 
 help() {
-  printf "qmenu-al [OPTION] (--light-theme)\nLaunch domU applications.\n\n --all\n --focused\n"
+  printf "qmenu-al [OPTION]\nLaunch domU applications.\n\n --all\n --focused\n"
 }
-
-if [ "$2" = "--light-theme" ]; then
-    theme_0='#ffffff'
-    theme_1='#000000'
-else
-    theme_0='#000000'
-    theme_1='#ffffff'
-fi
 
 case $1 in
     --all)
@@ -19,7 +11,7 @@ case $1 in
             grep '^Name=.*\|^Exec=.*' | grep -vw 'Qube Settings\|qubes-vm-settings')
 
         chosen=$(echo "$app_list" | grep '^Name=.*' | cut -c 6- |
-            dmenu -f -m 0 -nb $theme_0 -nf $theme_1 -sb $theme_1 -sf $theme_0)
+            dmenu -f -m 0)
 
         if [ -n "$chosen" ]; then
             if ! echo "$app_list" | grep -A1 "$chosen" | grep '^Exec=.*' | cut -c 6-; then exit 2; fi
@@ -55,7 +47,7 @@ case $1 in
                 grep -vw 'Qube Settings\|qubes-vm-settings')
 
             chosen=$(echo "$app_list" | grep '^Name=.*' | cut -f2- -d: |
-                dmenu -p "$qube:" -f -m 0 -nb $theme_0 -nf $theme_1 -sb "$qube_label" -sf $theme_1)
+                dmenu -p "$qube:" -f -m 0 -sb "$qube_label")
 
             if [ -n "$chosen" ]; then
                 if ! echo "$app_list" | grep -A1 "$chosen" | grep '^Exec=.*' | cut -c 6-; then exit 2; fi

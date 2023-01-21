@@ -2,7 +2,7 @@
 
 fmenu_fqubes() (
 
- dmenu_fmc="-f -m 0 -nb $theme_0 -nf $theme_1 -sb $theme_1 -sf $theme_0"
+ dmenu_fmc="-f -m 0"
 
  chosefrom=0
 
@@ -1423,7 +1423,7 @@ get_qube_label() {
 
  # Note that the '-m 0' option in 'dmenu' is important
  # for security, as it restricts it to monitor 0.
- dmenu_fmc="-f -m 0 -nb $theme_0 -nf $theme_1 -sb $qube_label -sf $theme_1"
+ dmenu_fmc="-f -m 0 -sb $qube_label"
 }
 
 rearrange_qube_list() {
@@ -1437,20 +1437,6 @@ rearrange_qube_list() {
    {print ListToOrdinal[$3] "-" $0}
    ' | sort -t- -k1,1n | cut -d- -f2-)
 }
-
-
-
-
-
-if [ "$2" = "--light-theme" ]; then
-
-  theme_0='#ffffff'
-  theme_1='#000000'
-else
-
-  theme_0='#000000'
-  theme_1='#ffffff'
-fi
 
 case $1 in
 
@@ -1482,7 +1468,7 @@ case $1 in
 
   *)
 
-    printf "qmenu-vm [OPTION] (--light-theme)\nList, manage and configure your qubes.\n\n --all\n --focused\n --halted\n --paused\n --running\n --tags=[TAG]\n\n\nqmenu v1.3\n<https://github.com/sine3o14nnae/qmenu/>\n<https://gitlab.com/sine3o14nnae/qmenu/>\n\n"
+    printf "qmenu-vm [OPTION]\nList, manage and configure your qubes.\n\n --all\n --focused\n --halted\n --paused\n --running\n --tags=[TAG]\n\n\nqmenu v1.3\n<https://github.com/sine3o14nnae/qmenu/>\n<https://gitlab.com/sine3o14nnae/qmenu/>\n\n"
 
     if [ "$1" = "--help" ]; then exit 0; else exit 2; fi
 esac
@@ -1503,8 +1489,7 @@ while true; do
   # into $qube_list, whenever the user selects the 'qvm-ls' top row.
   while [ "$target_qube" != "NAME" ]; do
 
-    target_qube=$(echo "$qube_list" | dmenu -f -m 0 -l 69 \
-      -nb $theme_0 -nf $theme_1 -sb $theme_1 -sf $theme_0 |\
+    target_qube=$(echo "$qube_list" | dmenu -f -m 0 -l 69 |\
       awk '{print $1}')
 
     if [ -z "$target_qube" ]; then exit 1
